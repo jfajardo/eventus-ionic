@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import {TabsPage} from '../tabs/tabs';
 /**
  * Generated class for the RegistroPage page.
  *
@@ -23,7 +22,6 @@ export class RegistroPage {
     username:"",
     password:""
   };
-  responseData:any;
 
   constructor(
     public navCtrl: NavController,
@@ -46,15 +44,26 @@ export class RegistroPage {
   }
 
   registrarme(){
-    this.authService.postData(this.userData, 'auth/register/').then((result)=>{
-      console.log(result);
-      if (result.hasOwnProperty('id')) {
-          this.mostrarMensaje('Registro Exitoso!');
-          this.navCtrl.pop();
-      }else{
-        this.mostrarMensaje('Por favor revise la información!');
-      }
-    });
+    if (this.userData.first_name === '') {
+      this.mostrarMensaje('Ingrese su Nombre!');
+    }else if (this.userData.last_name === '') {
+      this.mostrarMensaje('Ingrese su Apellido!');
+    }else if (this.userData.username === '') {
+      this.mostrarMensaje('Ingrese su Usuario!');
+    }else if (this.userData.email === '') {
+      this.mostrarMensaje('Ingrese su Email!');
+    }else if (this.userData.password === '') {
+      this.mostrarMensaje('Ingrese su Contraseña!');
+    }else{
+      this.authService.postData(this.userData, 'auth/register/').then((result)=>{
+        if (result.hasOwnProperty('id')) {
+            this.mostrarMensaje('Registro Exitoso!');
+            this.navCtrl.pop();
+        }else{
+          this.mostrarMensaje('Por favor revise la información!');
+        }
+      });
+    }
   }
 
 }

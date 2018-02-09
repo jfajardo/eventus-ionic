@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { RecordarPage } from '../recordar/recordar';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -15,17 +10,44 @@ import { RecordarPage } from '../recordar/recordar';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user = {email:'', contrasena:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  formulario: FormGroup;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public authService: AuthServiceProvider,
+    private alertCtrl: AlertController
+  ) {
+    this.formulario = this.crearFormulario();
   }
 
   recordarContrasena(){
     this.navCtrl.push(RecordarPage);
   }
 
+  private crearFormulario(){
+    return this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  ingresar(){
+    console.log(this.formulario.value);
+    this.authService.postData(this.formulario.value, 'auth/login/').then((result)=>{
+      console.log(result)
+      if(result.hasOwnProperty('auth_token')){
+        localStorage.setItem('token', result.auth_token);
+        this.navCtrl.setRoot(TabsPage);
+      }else{
+        this.alertCtrl.create({
+          title: 'Información',
+          subTitle: 'Usuaio y/o contraseña incorrecta!',
+          buttons: ['Aceptar']
+        }).present();
+      }
+    });
+  }
 }

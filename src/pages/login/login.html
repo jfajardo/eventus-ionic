@@ -14,19 +14,21 @@
 
 
 <ion-content padding>
-  <form>
+  <form [formGroup]='formulario' (ngSubmit)="ingresar()">
     <ion-list inset>
       <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" value=""></ion-input>
+        <ion-label floating>Usuario</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Contraseña</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
     </ion-list>
+    <ion-label color="danger" *ngIf="formulario.controls['username'].errors && formulario.controls['username'].dirty" class="danger" padding>Ingrese su usuario</ion-label>
+    <ion-label color="danger" *ngIf="formulario.controls['password'].errors && formulario.controls['password'].dirty" class="danger" padding>Ingrese su contraseña</ion-label>
+    <button ion-button block type="submit" [disabled]="!formulario.valid">Ingresar</button>
   </form>
-  <button ion-button block>Ingresar</button>
   <hr>
   <a (click)="recordarContrasena()">¿Has olvidado tu contraseña?</a>
 </ion-content>
