@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-/**
- * Generated class for the RecordarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -15,13 +10,42 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RecordarPage {
 
+  formulario: FormGroup;
+
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public authService: AuthServiceProvider,
+    private alertCtrl: AlertController,
+    public formBuilder: FormBuilder) {
+      this.formulario = this.crearFormulario();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecordarPage');
+  private crearFormulario(){
+    return this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
 
+  recordarContrasena(){
+    console.log(this.formulario.value)
+    console.log(this.formulario.valid)
+
+      this.authService.postData(this.formulario.value, 'cuenta/cambiar-clave').then((result)=>{
+        console.log(result)
+        if(result.actualizado){
+          this.alertCtrl.create({
+            title: 'Información',
+            subTitle: `Tu nueva clave es ${result.mensaje}`,
+            buttons: ['Aceptar']
+          }).present();
+        }else{
+          this.alertCtrl.create({
+            title: 'Información',
+            subTitle: result.mensaje,
+            buttons: ['Aceptar']
+          }).present();
+        }
+      });
+  }
 }

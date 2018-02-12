@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { TabsPage } from '../tabs/tabs';
+import { RecordarPage } from '../recordar/recordar';
 
 @IonicPage()
 @Component({

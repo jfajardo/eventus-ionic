@@ -7,11 +7,28 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
+  <ion-list inset>
+    <form [formGroup]='formulario'>
+      <ion-avatar>
+        <img class="avatar" [src]='formulario.value.avatar'/>
+      </ion-avatar>
+      <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Apellido</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Usuario</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <button ion-button block>Actualizar</button>
+    </form>
   </ion-list>
 </ion-content>
