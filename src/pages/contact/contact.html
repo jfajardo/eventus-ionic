@@ -8,27 +8,27 @@
 
 <ion-content>
   <ion-list inset>
-    <form [formGroup]='formulario'>
+    <form [formGroup]='formulario' (ngSubmit)="actualizarInformacion()">
       <ion-avatar>
-        <img class="avatar" [src]='formulario.value.avatar'/>
+        <img class="avatar" [src]='usuario.avatar'/>
       </ion-avatar>
       <ion-item>
         <ion-label floating>Nombre</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="usuario.first_name" formControlName="first_name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Apellido</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="usuario.last_name" formControlName="last_name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Usuario</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="usuario.username" formControlName="username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="usuario.email" formControlName="email"></ion-input>
       </ion-item>
-      <button ion-button block>Actualizar</button>
+      <button ion-button block type="submit">Actualizar</button>
     </form>
   </ion-list>
 </ion-content>

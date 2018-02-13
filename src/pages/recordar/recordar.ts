@@ -33,16 +33,16 @@ export class RecordarPage {
 
       this.authService.postData(this.formulario.value, 'cuenta/cambiar-clave').then((result)=>{
         console.log(result)
-        if(result.actualizado){
+        if(result['actualizado']){
           this.alertCtrl.create({
             title: 'Información',
-            subTitle: `Tu nueva clave es ${result.mensaje}`,
+            subTitle: `Tu nueva clave es ${result['mensaje']}`,
             buttons: ['Aceptar']
           }).present();
         }else{
           this.alertCtrl.create({
             title: 'Información',
-            subTitle: result.mensaje,
+            subTitle: result['mensaje'],
             buttons: ['Aceptar']
           }).present();
         }

@@ -40,7 +40,7 @@ export class LoginPage {
     this.authService.postData(this.formulario.value, 'auth/login/').then((result)=>{
       console.log(result)
       if(result.hasOwnProperty('auth_token')){
-        localStorage.setItem('token', result.auth_token);
+        localStorage.setItem('token', result['auth_token']);
         this.navCtrl.setRoot(TabsPage);
       }else{
         this.alertCtrl.create({
