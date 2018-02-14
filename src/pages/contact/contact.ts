@@ -56,5 +56,23 @@ export class ContactPage {
     });
   }
 
-  
+  obtenerFoto(){
+    let opciones: CameraOptions = {
+      destinationType: this.camara.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      quality: 100
+    }
+    this.camara.getPicture( opciones )
+    .then(imagenData => {
+      this.usuario.avatar = `data:image/jpeg;base64,${imagenData}`;
+      this.authService.putData({foto:imagenData}, 'cuenta/cambiar-foto').then((result)=>{
+        console.log(result)
+
+      });
+    })
+    .catch(error =>{
+      console.error( error );
+    });
+  }
 }

@@ -10,7 +10,7 @@
   <ion-list inset>
     <form [formGroup]='formulario' (ngSubmit)="actualizarInformacion()">
       <ion-avatar>
-        <img class="avatar" [src]='usuario.avatar'/>
+        <img class="avatar" [src]='usuario.avatar' (click)='obtenerFoto()'/>
       </ion-avatar>
       <ion-item>
         <ion-label floating>Nombre</ion-label>
