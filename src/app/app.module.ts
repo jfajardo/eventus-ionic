@@ -10,6 +10,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { EventoPage } from '../pages/evento/evento';
 
 import { RecordarPage } from '../pages/recordar/recordar';
 import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
@@ -28,7 +29,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     LoginPage,
     BienvenidaPage,
     RecordarPage,
-    RegistroPage
+    RegistroPage,
+    EventoPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     LoginPage,
     BienvenidaPage,
     RecordarPage,
-    RegistroPage
+    RegistroPage,
+    EventoPage
   ],
   providers: [
     StatusBar,
