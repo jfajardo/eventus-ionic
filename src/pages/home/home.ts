@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { EventoPage } from '../evento/evento';
+import { NuevoEventoPage } from '../nuevo-evento/nuevo-evento';
 
 @Component({
   selector: 'page-home',
@@ -38,5 +39,9 @@ export class HomePage {
   verEvento(evento){
     console.log(evento);
     this.navCtrl.push(EventoPage, {evento:evento});
+  }
+
+  nuevoEvento(){
+    this.navCtrl.push(NuevoEventoPage);
   }
 }

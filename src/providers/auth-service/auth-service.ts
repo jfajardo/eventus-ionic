@@ -2,8 +2,8 @@ import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 //URL de nuestra API
-let apiUrl = 'http://jfajardo.pythonanywhere.com/';
-//let apiUrl = 'http://192.168.1.100:8000/';
+//let apiUrl = 'http://jfajardo.pythonanywhere.com/';
+let apiUrl = 'http://192.168.1.100:8000/';
 
 @Injectable()
 export class AuthServiceProvider {
@@ -20,6 +20,22 @@ export class AuthServiceProvider {
       //headers - se utiliza para pasar información adicional como tokens y formato de datos
       let headers = new Headers({
         'Content-Type': 'application/json'
+      });
+      this.http.post(apiUrl + route, JSON.stringify(data), { headers: headers }).
+        subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          resolve(err.json());
+        });
+    });
+  }
+
+  postDataAuth(data, route) {
+    return new Promise((resolve, reject) => {
+      //headers - se utiliza para pasar información adicional como tokens y formato de datos
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `token ${localStorage.getItem('token')}`
       });
       this.http.post(apiUrl + route, JSON.stringify(data), { headers: headers }).
         subscribe(res => {
@@ -55,6 +71,21 @@ export class AuthServiceProvider {
           resolve(res.json());
         }, error => {
           resolve(error.json());
+        });
+    });
+  }
+
+  deleteData(route) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `token ${localStorage.getItem('token')}`
+      });
+      this.http.delete(apiUrl + route, { headers: headers }).
+        subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          resolve(err.json());
         });
     });
   }

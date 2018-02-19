@@ -5,9 +5,12 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-refresher (ionRefresh)="actualizar($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+
     <ion-card *ngFor='let evento of eventos' (click)='verEvento(evento)'>
       <ion-item>
         <ion-avatar item-start>
@@ -25,6 +28,6 @@
 
 
     <ion-fab right bottom>
-      <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+      <button ion-fab mini (click)='nuevoEvento()'><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 </ion-content>

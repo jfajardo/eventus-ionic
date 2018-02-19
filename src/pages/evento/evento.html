@@ -13,6 +13,17 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <button ion-button full icon-left color='danger' (click)='mostrarConfirmar()'>
+    <ion-icon name="trash"></ion-icon>
+    Eliminar Evento
+  </button>
+  <ion-card>
+   <img src={{evento.imagen}}/>
+   <div class="card-title">{{evento.nombre}}</div>
+   <div class="card-subtitle">Por {{evento.usuario.first_name}}</div>
+ </ion-card>
+ <ion-card>
+   <div id="map_canvas"></div>
+ </ion-card>
 </ion-content>

@@ -68,7 +68,6 @@ export class ContactPage {
       this.usuario.avatar = `data:image/jpeg;base64,${imagenData}`;
       this.authService.putData({foto:imagenData}, 'cuenta/cambiar-foto').then((result)=>{
         console.log(result)
-
       });
     })
     .catch(error =>{
