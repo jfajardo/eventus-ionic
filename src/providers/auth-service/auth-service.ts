@@ -2,8 +2,8 @@ import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 //URL de nuestra API
-//let apiUrl = 'http://jfajardo.pythonanywhere.com/';
-let apiUrl = 'http://192.168.1.100:8000/';
+let apiUrl = 'http://jfajardo.pythonanywhere.com/';
+//let apiUrl = 'http://192.168.1.100:8000/';
 
 @Injectable()
 export class AuthServiceProvider {
